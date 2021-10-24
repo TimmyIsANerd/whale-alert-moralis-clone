@@ -15,8 +15,7 @@ import {
   Textarea,
   InputGroup,
   InputLeftElement,
-  Stack,
-  Center,
+  Text
 } from "@chakra-ui/react";
 
 const appId = "G7ICEnoBmI47SQxy9mZMYbekQxEUgkFjfK8Po8jZ";
@@ -27,7 +26,7 @@ Moralis.serverURL = serverUrl;
 
 // Build Form to Handle Input
 
-export const WatchAddress = ({ logout }) => {
+export const WatchAddress = ({ logout, user }) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   // handle form submission
@@ -75,7 +74,8 @@ export const WatchAddress = ({ logout }) => {
           borderRadius="lg"
           boxShadow="1px 1px 3px rgba(0,0,0,0.3)"
           onSubmit={handleSubmit}
-        >
+        >   
+        <Text></Text>
           <FormLabel htmlFor="address">Wallet Address</FormLabel>
 
           {
@@ -170,6 +170,7 @@ export const WatchAddress = ({ logout }) => {
               colorScheme="green"
               variant="outline"
               onClick={() => logout()}
+              type="button"
             >
               Log Out
             </Button>

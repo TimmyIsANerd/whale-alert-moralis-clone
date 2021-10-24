@@ -150,6 +150,13 @@ const sendTelegramAlert = async (tx_data, token_data) => {
         // todo: insert handling including increase/decrease here
         // next: trigger allocated alert method
         // e.g. sendTelegramAlert(request.object, token_data);
+        // Moralis.Cloud.sendEmail({
+        //   to: request.user.get("email"),
+        //   templateId: "",
+        //   dynamic_template_data:{
+        //     name: data.to_address
+        //   }
+        // });
       });
   
       return true;

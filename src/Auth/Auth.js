@@ -18,6 +18,8 @@ import { useState } from "react";
 export const Auth = () => {
   const { authenticate, isAuthenticating, authError } = useMoralis();
   const [authOption, setAuthOption] = useState(false);
+  const [alertStatus, setAlertStatus] = useState(true);
+  const closeAlert = () => setAlertStatus(false);
   const showRegOption = () => setAuthOption(true);
   const showLoginOption = () => setAuthOption(false);
 
@@ -114,21 +116,35 @@ export const Auth = () => {
     );
   };
 
+  // Alert
+  const AlertComponent = () => {
+    return (
+      <Box>
+        {alertStatus ? (
+          <Alert status="error">
+            <AlertIcon />
+            <Box flex="1">
+              <AlertTitle>Authentication has Failed!</AlertTitle>
+              <AlertDescription display="block">
+                {authError.message}
+              </AlertDescription>
+            </Box>
+            <CloseButton
+              onClick={() => closeAlert()}
+              position="absolute"
+              right="8px"
+              top="8px"
+            />
+          </Alert>
+        ) : null}
+      </Box>
+    );
+  };
+
   return (
     <Stack spacing={6}>
       <Box mt={5}>{authOption ? <SignUp /> : <Login />}</Box>
-      {authError && (
-        <Alert status="error">
-          <AlertIcon />
-          <Box flex="1">
-            <AlertTitle>Authentication has Failed!</AlertTitle>
-            <AlertDescription display="block">
-              {authError.message}
-            </AlertDescription>
-          </Box>
-          <CloseButton position="absolute" right="8px" top="8px" />
-        </Alert>
-      )}
+      {authError && <AlertComponent />}
     </Stack>
   );
 };

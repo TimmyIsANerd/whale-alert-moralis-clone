@@ -15,7 +15,7 @@ function App() {
             <Heading size="lg">Whale Alert App🐋🚨</Heading>
           </Center>
           <Stack spacing={4}>
-          {isAuthenticated ? <Box mt={5}><WatchAddress logout={logout} /></Box> : 
+          {isAuthenticated ? <Box mt={5}><WatchAddress user={user} logout={logout} /></Box> : 
             <Auth/>  }
           </Stack>
           <Box float="right" mt={4}>
