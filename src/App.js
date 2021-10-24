@@ -1,11 +1,12 @@
 // Required Imports
-import { ByMoralis } from "react-moralis";
+import { ByMoralis, useMoralis } from "react-moralis";
 import { Box, Stack, Heading, Center } from "@chakra-ui/react";
 import { WatchAddress } from "./Forms/WatchAddress";
 import { Auth } from "./Auth/Auth";
 
 function App() {
-  // Set Up Authentication
+  // Set Up Application
+  const {isAuthenticated, user, logout} = useMoralis();
   return (
     <div className="App">
       <Center>
@@ -14,10 +15,8 @@ function App() {
             <Heading size="lg">Whale Alert App🐋🚨</Heading>
           </Center>
           <Stack spacing={4}>
-            <Auth/>
-            <Box>
-              <WatchAddress />
-            </Box>
+          {isAuthenticated ? <Box><WatchAddress logout={logout} /></Box> : 
+            <Auth/>  }
           </Stack>
           <Box float="right" mt={4}>
             <ByMoralis width={200} variant="dark" />
